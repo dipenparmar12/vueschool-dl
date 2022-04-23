@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "app-root-path": "^3.0.0",
     "axios": "^0.21.4",
     "cli-progress": "^3.10.0",
     "delay": "^5.0.0",
@@ -18,5 +19,8 @@
     "fs-extra": "^10.1.0",
     "puppeteer": "^13.6.0",
     "puppeteer-core": "^13.6.0"
+  },
+  "devDependencies": {
+    "winston": "^3.7.2"
   }
 }
