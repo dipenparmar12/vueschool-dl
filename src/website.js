@@ -45,7 +45,27 @@ module.exports.login = async (page) => {
 }
 
 
-module.exports.getVideoList = async (page, courseURL) => {
+
+module.exports.getAllCourses = async (browserInstance, courseURL = 'https://vueschool.io/courses') => {
+  const page = await browserInstance.newPage();
+  await page.goto(courseURL, { waitUntil: 'networkidle0' }); // wait until page load
+  await delay(500)
+
+  const courses = await page.evaluate(
+    () => Array.from(document.querySelectorAll("h3"))
+      .map(h3 => {
+        return {
+          href: h3.closest("a").href,
+          title: h3?.textContent?.replaceAll('\n', '')
+        }
+      })
+  );
+
+  return courses
+}
+
+module.exports.getVideoList = async (browser, courseURL) => {
+  const page = await browser.page(instance)
   await page.goto(courseURL, { waitUntil: 'networkidle0' }); // wait until page load
   await delay(1000)
 
