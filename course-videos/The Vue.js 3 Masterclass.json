@@ -1,0 +1,684 @@
+{
+  "course": "The Vue.js 3 Masterclass",
+  "chapters": [
+    {
+      "chapter": "Getting Started",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/what-do-i-need-to-take-the-vue-3-masterclass",
+          "title": "What Do I Need to Take the Vue 3 Masterclass?"
+        },
+        {
+          "href": "https://vueschool.io/lessons/install-vue-cli-and-its-dependencies",
+          "title": "Install Vue CLI and Its Dependencies"
+        },
+        {
+          "href": "https://vueschool.io/lessons/scaffold-a-new-vue-3-project-with-vue-cli",
+          "title": "Scaffold a New Vue 3 Project With Vue CLI"
+        },
+        {
+          "href": "https://vueschool.io/lessons/exploring-the-scaffolded-vue-3-project",
+          "title": "Exploring the Scaffolded Vue 3 Project"
+        },
+        {
+          "href": "https://vueschool.io/lessons/automatic-and-static-code-review-with-eslint-linting",
+          "title": "Automatic and Static Code Review With ESLint (Linting)"
+        },
+        {
+          "href": "https://vueschool.io/lessons/choosing-eslint-presets",
+          "title": "Choosing ESLint Presets"
+        },
+        {
+          "href": "https://vueschool.io/lessons/initialize-a-vue-3-app-using-createapp",
+          "title": "Initialize a Vue 3 App Using createApp"
+        }
+      ]
+    },
+    {
+      "chapter": "Application Structure",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/structuring-our-forum-data",
+          "title": "Structuring Our Forum Data"
+        },
+        {
+          "href": "https://vueschool.io/lessons/how-to-import-data-from-json-files-in-a-vue-3-app",
+          "title": "How to Import Data From JSON Files in a Vue 3 App"
+        },
+        {
+          "href": "https://vueschool.io/lessons/displaying-a-list-of-elements-in-vue-3",
+          "title": "Displaying a List of Elements in Vue 3"
+        },
+        {
+          "href": "https://vueschool.io/lessons/styling-vue-components",
+          "title": "Styling Vue Components"
+        },
+        {
+          "href": "https://vueschool.io/lessons/global-styles-and-stylesheet-processing",
+          "title": "Global Styles and Stylesheet Processing"
+        }
+      ]
+    },
+    {
+      "chapter": "Routing &amp; Components Basics",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/install-and-configure-vue-router-4",
+          "title": "Install and Configure Vue Router 4"
+        },
+        {
+          "href": "https://vueschool.io/lessons/dynamic-route-matching-route-params",
+          "title": "Dynamic Route Matching &amp; Route Params"
+        },
+        {
+          "href": "https://vueschool.io/lessons/extract-router-configuration",
+          "title": "Extract Router Configuration"
+        },
+        {
+          "href": "https://vueschool.io/lessons/create-threadlist-vue-and-clean-up-the-homepage",
+          "title": "Create ThreadList.vue and Clean up the Homepage"
+        },
+        {
+          "href": "https://vueschool.io/lessons/using-router-link-to-navigate-between-page-components",
+          "title": "Using router-link to Navigate Between Page Components"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-a-not-found-page-with-vue-router",
+          "title": "Creating a Not Found Page with Vue Router"
+        },
+        {
+          "href": "https://vueschool.io/lessons/redirect-with-vue-router-without-changing-the-url",
+          "title": "Redirect With Vue Router Without Changing the URL"
+        }
+      ]
+    },
+    {
+      "chapter": "Organizing the Application",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/reorganizing-the-page-components",
+          "title": "Reorganizing the Page Components"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-a-forum-post-component",
+          "title": "Creating a Forum Post Component"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-a-post-editor-component",
+          "title": "Creating a Post Editor"
+        },
+        {
+          "href": "https://vueschool.io/lessons/communication-between-components-1",
+          "title": "Communication Between Components"
+        },
+        {
+          "href": "https://vueschool.io/lessons/adding-human-readable-dates",
+          "title": "Adding Human Readable Dates"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-base-components-in-a-vue-application",
+          "title": "Creating Base Components in a Vue Application"
+        },
+        {
+          "href": "https://vueschool.io/lessons/registering-base-components-globally",
+          "title": "Registering Base Components Globally"
+        },
+        {
+          "href": "https://vueschool.io/lessons/organizing-threads-in-forums",
+          "title": "Organizing Threads in Forums"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-a-forumlist-component",
+          "title": "Creating a ForumList Component"
+        },
+        {
+          "href": "https://vueschool.io/lessons/introducing-categories-collections-of-forums",
+          "title": "Introducing Categories, Collections of Forums"
+        }
+      ]
+    },
+    {
+      "chapter": "Vuex and State Management",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/how-to-migrate-vue-applications-state-to-vuex",
+          "title": "How to Migrate Vue Application’s State to Vuex"
+        },
+        {
+          "href": "https://vueschool.io/lessons/vuex-actions-and-mutations",
+          "title": "Vuex Actions &amp; Mutations"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-a-forum-navbar",
+          "title": "Creating a Forum Navbar"
+        },
+        {
+          "href": "https://vueschool.io/lessons/fetching-the-authenticated-user-from-vuex",
+          "title": "Fetching the Authenticated User From Vuex"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-the-user-profile-page",
+          "title": "Creating the User Profile Page"
+        },
+        {
+          "href": "https://vueschool.io/lessons/javascript-passed-by-reference-vs-by-value",
+          "title": "JavaScript: Passed by Reference vs by Value"
+        },
+        {
+          "href": "https://vueschool.io/lessons/extracting-user-posts-and-threads-to-the-store",
+          "title": "Extracting User Posts and Threads to the Store"
+        },
+        {
+          "href": "https://vueschool.io/lessons/updating-the-user-profile",
+          "title": "Updating the User Profile"
+        },
+        {
+          "href": "https://vueschool.io/lessons/sharing-components-between-multiple-pages",
+          "title": "Sharing Components Between Multiple Pages"
+        },
+        {
+          "href": "https://vueschool.io/lessons/scroll-to-top-with-vue-router",
+          "title": "Scroll to Top with Vue Router"
+        },
+        {
+          "href": "https://vueschool.io/lessons/using-the-authid-when-creating-new-posts",
+          "title": "Using the authId When Creating new posts"
+        }
+      ]
+    },
+    {
+      "chapter": "Forum Threads",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/creating-new-forum-threads",
+          "title": "Creating New Forum Threads"
+        },
+        {
+          "href": "https://vueschool.io/lessons/refactoring-the-forum-thread-related-actions-and-mutations",
+          "title": "Refactoring the Forum Thread Related Actions and Mutations"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-a-route-to-create-new-forum-threads",
+          "title": "Creating a Route to Create New Forum Threads"
+        },
+        {
+          "href": "https://vueschool.io/lessons/redirecting-when-creating-new-threads",
+          "title": "Redirecting When Creating New Threads"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-a-threadeditor-component",
+          "title": "Creating a ThreadEditor Component"
+        },
+        {
+          "href": "https://vueschool.io/lessons/editing-threads",
+          "title": "Editing Threads"
+        },
+        {
+          "href": "https://vueschool.io/lessons/improving-the-threadeditor",
+          "title": "Improving the ThreadEditor"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-helper-functions",
+          "title": "Creating Helper Functions"
+        }
+      ]
+    },
+    {
+      "chapter": "Higher Order Functions",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/what-is-a-higher-order-function-in-javascript",
+          "title": "What Is a Higher Order Function in JavaScript?"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-vuex-mutations-with-higher-order-functions",
+          "title": "Creating Vuex Mutations with Higher Order Functions"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-dynamic-vuex-getters-with-higher-order-functions",
+          "title": "Creating Dynamic Vuex Getters with Higher Order Functions"
+        },
+        {
+          "href": "https://vueschool.io/lessons/minor-improvements-before-introducing-the-cloud-firestore",
+          "title": "Minor Improvements Before Introducing the Cloud Firestore"
+        }
+      ]
+    },
+    {
+      "chapter": "Working with Cloud Firestore",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/firebase-setup-and-installation",
+          "title": "Firebase Setup and Installation"
+        },
+        {
+          "href": "https://vueschool.io/lessons/set-up-the-cloud-firestore-database",
+          "title": "Set up the Cloud Firestore Database"
+        },
+        {
+          "href": "https://vueschool.io/lessons/understanding-the-lifecycle-hooks-in-vue-js",
+          "title": "Understanding the Lifecycle Hooks in Vue.js"
+        },
+        {
+          "href": "https://vueschool.io/lessons/migrating-vuex-to-use-cloud-firestore-database",
+          "title": "Migrating Vuex to use Cloud Firestore Database"
+        },
+        {
+          "href": "https://vueschool.io/lessons/fetching-data-from-cloud-firestore-with-vuex-actions",
+          "title": "Fetching Data from Cloud Firestore with Vuex Actions"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-reusable-vuex-actions-and-mutations",
+          "title": "Creating Reusable Vuex Actions and Mutations"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-vuex-actions-that-fetch-multiple-items-from-cloud-firestore",
+          "title": "Creating Vuex Actions that Fetch Multiple Items from Cloud Firestore"
+        },
+        {
+          "href": "https://vueschool.io/lessons/fetching-data-in-beforeCreate-on-the-homepage",
+          "title": "Fetching Data in beforeCreate on the Homepage"
+        },
+        {
+          "href": "https://vueschool.io/lessons/fetching-data-for-the-forum-page",
+          "title": "Fetching Data for the Forum Page"
+        },
+        {
+          "href": "https://vueschool.io/lessons/fetching-data-for-all-remaining-pages",
+          "title": "Fetching Data For All Remaining Pages"
+        },
+        {
+          "href": "https://vueschool.io/lessons/mapping-our-vuex-actions",
+          "title": "Mapping Vuex Actions"
+        },
+        {
+          "href": "https://vueschool.io/lessons/splitting-the-vuex-store-into-multiple-files",
+          "title": "Splitting the Vuex Store into Multiple Files"
+        },
+        {
+          "href": "https://vueschool.io/lessons/fetching-app-wide-data",
+          "title": "Fetching App-Wide Data"
+        },
+        {
+          "href": "https://vueschool.io/lessons/storing-new-posts-in-cloud-firestore-with-vuex",
+          "title": "Storing New Posts in Cloud Firestore with Vuex"
+        },
+        {
+          "href": "https://vueschool.io/lessons/using-the-server-timestamp-for-post-published-at",
+          "title": "Using the Server Timestamp for Post Published At"
+        },
+        {
+          "href": "https://vueschool.io/lessons/storing-new-threads-in-cloud-firestore-with-vuex",
+          "title": "Storing New Threads in Cloud Firestore with Vuex"
+        },
+        {
+          "href": "https://vueschool.io/lessons/incrementing-the-users-posts-count",
+          "title": "Incrementing the User's Posts Count"
+        },
+        {
+          "href": "https://vueschool.io/lessons/updating-a-thread-in-the-firestore",
+          "title": "Updating a Thread in the Firestore"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-a-font-awesome-plugin-in-vue-3",
+          "title": "Creating a Font Awesome Plugin in Vue 3"
+        },
+        {
+          "href": "https://vueschool.io/lessons/preparing-the-interface-for-post-updates",
+          "title": "Preparing the User Interface for Post Updates"
+        },
+        {
+          "href": "https://vueschool.io/lessons/updating-a-post-in-firestore",
+          "title": "Updating a Post in Cloud Firestore"
+        },
+        {
+          "href": "https://vueschool.io/lessons/unsubscribing-from-firestore-snapshots",
+          "title": "Unsubscribing from Cloud Firestore Snapshots"
+        }
+      ]
+    },
+    {
+      "chapter": "Loading Indicators when Fetching Async Data",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/hiding-content-until-data-is-fully-loaded",
+          "title": "Hiding Content Until Data is Fully Loaded"
+        },
+        {
+          "href": "https://vueschool.io/lessons/sharing-logic-between-components-with-mixins",
+          "title": "Sharing Logic Between Components with Mixins"
+        },
+        {
+          "href": "https://vueschool.io/lessons/displaying-a-loading-indicator-while-components-fetch-async-data",
+          "title": "Displaying a Loading Indicator while Components Fetch Async Data"
+        },
+        {
+          "href": "https://vueschool.io/lessons/show-a-loading-spinner-while-fetching-async-data",
+          "title": "Show a Loading Spinner while Fetching Async Data"
+        },
+        {
+          "href": "https://vueschool.io/lessons/showing-a-progress-bar-while-components-fetch-asynchronous-data",
+          "title": "Showing a Progress Bar while Components Fetch Asynchronous Data"
+        }
+      ]
+    },
+    {
+      "chapter": "Workflow Improvements",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/firebase-tools-cli",
+          "title": "Firebase Tools (CLI)"
+        },
+        {
+          "href": "https://vueschool.io/lessons/seeding-the-database",
+          "title": "Seeding the Database"
+        },
+        {
+          "href": "https://vueschool.io/lessons/using-env-for-different-environment-configuration",
+          "title": "Using .env for Different Environment Configuration"
+        },
+        {
+          "href": "https://vueschool.io/lessons/using-env-for-secure-secrets",
+          "title": "Using .env for Secure Secrets"
+        }
+      ]
+    },
+    {
+      "chapter": "User Authentication",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/creating-the-user-registration-form",
+          "title": "Creating the User Registration Form"
+        },
+        {
+          "href": "https://vueschool.io/lessons/storing-new-users-in-the-firestore",
+          "title": "Storing New Users in the Firestore"
+        },
+        {
+          "href": "https://vueschool.io/lessons/integrating-registration-with-firebase-authentication",
+          "title": "Integrating Registration with Firebase Authentication"
+        },
+        {
+          "href": "https://vueschool.io/lessons/signing-the-user-in-after-registration",
+          "title": "Signing the User in after Registration"
+        },
+        {
+          "href": "https://vueschool.io/lessons/signing-users-in-and-out",
+          "title": "Signing Users In and Out"
+        },
+        {
+          "href": "https://vueschool.io/lessons/using-class-bindings-for-user-drop-down-menu",
+          "title": "Using Class Bindings for User Drop Down Menu"
+        },
+        {
+          "href": "https://vueschool.io/lessons/authenticating-users-via-3rd-party-providers",
+          "title": "Authenticating Users via 3rd Party Providers"
+        },
+        {
+          "href": "https://vueschool.io/lessons/unsubscribing-from-the-auth-user-snapshot",
+          "title": "Unsubscribing from the Auth User Snapshot"
+        }
+      ]
+    },
+    {
+      "chapter": "Vue Router Middleware and Navigation Guards",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/in-component-navigation-guards-with-vue-router",
+          "title": "In Component Navigation Guards with Vue Router"
+        },
+        {
+          "href": "https://vueschool.io/lessons/navigation-guards-for-componentless-routes",
+          "title": "Navigation Guards for Componentless Routes"
+        },
+        {
+          "href": "https://vueschool.io/lessons/meta-fields-and-global-navigation-guards",
+          "title": "Meta Fields and Global Navigation Guards"
+        },
+        {
+          "href": "https://vueschool.io/lessons/navigation-guards-and-firebase-authentication",
+          "title": "Navigation Guards and Firebase Authentication"
+        },
+        {
+          "href": "https://vueschool.io/lessons/404-thread-show-page-and-async-thread-data",
+          "title": "404 Thread Show Page and Async Thread Data"
+        },
+        {
+          "href": "https://vueschool.io/lessons/firestore-rules-and-protecting-pages-for-authenticated-users",
+          "title": "Firestore Rules and Protecting Pages for Authenticated Users"
+        },
+        {
+          "href": "https://vueschool.io/lessons/hiding-guest-pages-from-logged-in-users",
+          "title": "Hiding Guest Pages from Logged In Users"
+        },
+        {
+          "href": "https://vueschool.io/lessons/redirecting-users-after-logging-in-to-the-page-they-tried-to-visit",
+          "title": "Redirecting Users After Logging In to the Page they Tried to Visit"
+        },
+        {
+          "href": "https://vueschool.io/lessons/allowing-only-authenticated-users-to-create-and-edit-posts",
+          "title": "Allowing Only Authenticated Users to Create and Edit Posts"
+        },
+        {
+          "href": "https://vueschool.io/lessons/the-authenticated-user-s-profile-page",
+          "title": "The Authenticated User's Profile Page"
+        },
+        {
+          "href": "https://vueschool.io/lessons/forcing-vue-router-to-destroy-component-to-trigger-lifecycle-hooks",
+          "title": "Forcing Vue Router to Destroy Component to Trigger Lifecycle Hooks"
+        }
+      ]
+    },
+    {
+      "chapter": "Modularizing the Vuex Store",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/splitting-a-large-vuex-store-into-namespaced-modules-part-1",
+          "title": "Splitting a Large Vuex Store Into Namespaced Modules Part 1"
+        },
+        {
+          "href": "https://vueschool.io/lessons/splitting-a-large-vuex-store-into-namespaced-modules-part-2",
+          "title": "Splitting a Large Vuex Store Into Namespaced Modules Part 2"
+        },
+        {
+          "href": "https://vueschool.io/lessons/splitting-a-large-vuex-store-into-namespaced-modules-part-3",
+          "title": "Splitting a Large Vuex Store Into Namespaced Modules Part 3"
+        }
+      ]
+    },
+    {
+      "chapter": "Custom Vue.js Directives",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/closing-dropdown-on-click-outside",
+          "title": "Closing Dropdown on Click Outside"
+        },
+        {
+          "href": "https://vueschool.io/lessons/building-a-mobile-navbar",
+          "title": "Building a Mobile Navbar"
+        },
+        {
+          "href": "https://vueschool.io/lessons/closing-the-mobile-navbar-on-scroll",
+          "title": "Closing the Mobile Navbar on Scroll"
+        }
+      ]
+    },
+    {
+      "chapter": "Pagination",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/pagination-and-indexes-in-the-cloud-firestore",
+          "title": "Pagination and Indexes in the Cloud Firestore"
+        },
+        {
+          "href": "https://vueschool.io/lessons/paginating-user-posts-with-infinite-scroll",
+          "title": "Paginating User Posts with Infinite Scroll"
+        },
+        {
+          "href": "https://vueschool.io/lessons/paginating-threads-with-pagination-component",
+          "title": "Paginating Threads with Pagination Component"
+        },
+        {
+          "href": "https://vueschool.io/lessons/storing-the-current-page-as-a-url-query-variable",
+          "title": "Storing the Current Page as a URL Query Variable"
+        }
+      ]
+    },
+    {
+      "chapter": "Notification System",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/clean-up-to-prep-for-notifications",
+          "title": "Clean Up to Prep for Notifications"
+        },
+        {
+          "href": "https://vueschool.io/lessons/a-composable-for-storing-and-interacting-with-notifications",
+          "title": "A Composable for Storing and Interacting with Notifications"
+        },
+        {
+          "href": "https://vueschool.io/lessons/implementing-notifications-on-thread-page-part-1",
+          "title": "Implementing Notifications on Thread Page Part 1"
+        },
+        {
+          "href": "https://vueschool.io/lessons/implementing-the-notifications-on-thread-page-part-2",
+          "title": "Implementing the Notifications on Thread Page Part 2"
+        },
+        {
+          "href": "https://vueschool.io/lessons/extending-notifications-with-options",
+          "title": "Extending Notifications with Options"
+        },
+        {
+          "href": "https://vueschool.io/lessons/using-the-transition-group-component",
+          "title": "Using the Transition Group Component"
+        }
+      ]
+    },
+    {
+      "chapter": "Uploading and Storing Images",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/uploading-avatars-to-firebase-storage-during-registration",
+          "title": "Uploading Avatars to Firebase Storage During Registration"
+        },
+        {
+          "href": "https://vueschool.io/lessons/securing-files-with-firebase-storage-rules",
+          "title": "Securing Files with Firebase Storage Rules"
+        },
+        {
+          "href": "https://vueschool.io/lessons/editing-the-user-avatar-on-the-profile-page",
+          "title": "Editing the User Avatar on the Profile Page"
+        },
+        {
+          "href": "https://vueschool.io/lessons/improving-the-avatar-editing-user-experience",
+          "title": "Improving the Avatar Editing User Experience"
+        },
+        {
+          "href": "https://vueschool.io/lessons/handing-errors-with-image-uploads",
+          "title": "Handling Errors With Image Uploads"
+        },
+        {
+          "href": "https://vueschool.io/lessons/providing-an-avatar-placeholder-for-users-with-no-avatar",
+          "title": "Providing an Avatar Placeholder for Users with no Avatar"
+        },
+        {
+          "href": "https://vueschool.io/lessons/use-the-pixabay-rest-api-to-enable-random-profile-pictures",
+          "title": "Use the Pixabay REST API to Enable Random Profile Pictures"
+        },
+        {
+          "href": "https://vueschool.io/lessons/storing-images-to-firebase-storage-from-a-web-url",
+          "title": "Storing Images to Firebase Storage from a Web URL"
+        }
+      ]
+    },
+    {
+      "chapter": "Form Validation with VeeValidate",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/introduction-to-veevalidate",
+          "title": "Introduction to VeeValidate"
+        },
+        {
+          "href": "https://vueschool.io/lessons/displaying-error-messages-with-veevalidate",
+          "title": "Displaying Error Messages with VeeValidate"
+        },
+        {
+          "href": "https://vueschool.io/lessons/defining-global-components-and-rules",
+          "title": "Defining Global Components and Rules"
+        },
+        {
+          "href": "https://vueschool.io/lessons/using-multiple-rules-on-a-single-field",
+          "title": "Using Multiple Rules on a Single Field"
+        },
+        {
+          "href": "https://vueschool.io/lessons/passing-arguments-to-veevalidate-rules",
+          "title": "Passing Arguments to VeeValidate Rules"
+        },
+        {
+          "href": "https://vueschool.io/lessons/customizing-veevalidate-error-messages",
+          "title": "Customizing VeeValidate Error Messages"
+        },
+        {
+          "href": "https://vueschool.io/lessons/defining-async-rules-with-veevalidate",
+          "title": "Defining Async Rules with VeeValidate"
+        },
+        {
+          "href": "https://vueschool.io/lessons/wrapping-veevalidate-field-with-custom-appformfield",
+          "title": "Wrapping VeeValidate Field with Custom AppFormField"
+        },
+        {
+          "href": "https://vueschool.io/lessons/adding-validation-to-all-the-forms",
+          "title": "Adding Validation to all the Forms"
+        },
+        {
+          "href": "https://vueschool.io/lessons/creating-a-simple-autocomplete-location-field",
+          "title": "Creating a Simple Autocomplete Location Field"
+        }
+      ]
+    },
+    {
+      "chapter": "Deploying the Application",
+      "videos": [
+        {
+          "href": "https://vueschool.io/lessons/last-minute-clean-up-part-1",
+          "title": "Last Minute Clean Up Part 1"
+        },
+        {
+          "href": "https://vueschool.io/lessons/last-minute-clean-up-part-2",
+          "title": "Last Minute Clean Up Part 2"
+        },
+        {
+          "href": "https://vueschool.io/lessons/last-minute-clean-up-part-3",
+          "title": "Last Minute Clean Up Part 3"
+        },
+        {
+          "href": "https://vueschool.io/lessons/updating-the-user-email-address",
+          "title": "Updating the User Email Address"
+        },
+        {
+          "href": "https://vueschool.io/lessons/updating-the-user-email-address-part-2",
+          "title": "Updating the User Email Address Part 2"
+        },
+        {
+          "href": "https://vueschool.io/lessons/deploying-to-netlify",
+          "title": "Deploying to Netlify"
+        },
+        {
+          "href": "https://vueschool.io/lessons/ci-cd-with-netlify",
+          "title": "CI/CD with Netlify"
+        },
+        {
+          "href": "https://vueschool.io/lessons/analyzing-bundle-size-and-code-splitting-routes",
+          "title": "Analyzing Bundle Size and Code Splitting Routes"
+        },
+        {
+          "href": "https://vueschool.io/lessons/meta-for-seo-with-netlify-prerendering",
+          "title": "Meta for SEO with Netlify PreRendering"
+        },
+        {
+          "href": "https://vueschool.io/lessons/course-conclusion",
+          "title": "Course Conclusion"
+        }
+      ]
+    }
+  ]
+}

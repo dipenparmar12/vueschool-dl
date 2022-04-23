@@ -28,7 +28,10 @@ module.exports.page = async (browser)=>{
 }
 
 module.exports.screenshot = async (page, name = `page` )=>{
-  const filepath = isDirExitsOrCreate(`${appRoot}/src/screenshots`)
-  await page.screenshot({ path: `${filepath}/${name}.png`  });
+  return page // TODO:::REMOVE 
+  if(process.env.SCREENSHOTS){
+    const filepath = isDirExitsOrCreate(`${appRoot}/src/screenshots`)
+    await page.screenshot({ path: `${filepath}/${name}.png`  });
+  }
   return page
 }

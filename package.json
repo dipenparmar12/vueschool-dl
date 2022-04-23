@@ -4,6 +4,7 @@
   "description": "Vue Shool downloader",
   "main": "index.js",
   "scripts": {
+    "dev": "nodemon --ignore course-videos/ --ignore logs/ index.js",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

@@ -43,9 +43,9 @@ const options = {
       format.printf(printf)
       // format.printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`),
     ),
-    flags: 'w',
+    options: { flags: 'w' } // Disable appending clean every log
   },
-  
+
   html: {
     level: 'info',
     filename: `${appRoot}/logs/${new Date().toISOString().slice(0, 10)}.html`, // Date=YYYY-MM-DD
@@ -57,7 +57,7 @@ const options = {
     format: format.combine(
       format.prettyPrint(),
       format.splat(),
-      format.printf((info)=>(info.message))
+      format.printf((info) => (info.message))
     ),
     options: { flags: 'w' } // Disable appending clean every log
   },
@@ -66,18 +66,18 @@ const options = {
 const logger = winston.createLogger({
   level: env === 'development' ? 'debug' : 'info',
   transports: [
-    new winston.transports.Console(options.console), 
+    new winston.transports.Console(options.console),
     new winston.transports.File(options.file)
   ],
 });
 
-const htmlLog = winston.createLogger({
-  level: env === 'development' ? 'debug' : 'info',
-  transports: [new winston.transports.File(options.html)],
-});
+// const htmlLog = winston.createLogger({
+//   level: env === 'development' ? 'debug' : 'info',
+//   transports: [new winston.transports.File(options.html)],
+// });
 
 module.exports = logger;
-module.exports.htmlLog = htmlLog;
+// module.exports.htmlLog = htmlLog;
 // module.exports.mailLog = mailLog;
 
 /// Usage example

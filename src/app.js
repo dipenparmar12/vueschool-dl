@@ -1,21 +1,33 @@
-
+const { writeJson } = require('fs-extra');
+const appRoot = require('app-root-path');
 const browser = require('./browser');
-const website = require('./website');
 const logger = require('./utils/logger');
-const delay = require('delay');
+const website = require('./website');
+const isDirExitsOrCreate = require('./utils/isDirExitsOrCreate');
 
 
-const run = async ()=> {
+const test = async () => {
+  // console.log('app.js::[8] var', var)
+}
+
+
+const run = async (courses) => {
+  // return test()
   console.log('index.js::[6] Application running......')
-
   const instance = await browser.launch()
-  const page = await browser.page(instance)
-  await website.login(page)
+  // await website.login(page)
 
-  
+  courses.forEach(async (courseURL, i) => {
+    const page = await browser.page(instance)
+    const courseVideos = await website.getVideoList(page, courseURL)
+    const path = isDirExitsOrCreate(`${appRoot}/course-videos/`)
+    writeJson(`${path}/${courseVideos.course}.json`, courseVideos)
+    // logger.info(courseVideos)
+    page.close()
+  });
+
   // await instance.close()
-
-  console.log('index.js::[21] Application Closed...' )
+  // console.log('index.js::[21] Application Closed...')
 }
 
 
