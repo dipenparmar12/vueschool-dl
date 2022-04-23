@@ -12,7 +12,7 @@ const run = async ()=> {
   const page = await browser.page(instance)
   await website.login(page)
 
-  // await delay(500)
+  
   // await instance.close()
 
   console.log('index.js::[21] Application Closed...' )

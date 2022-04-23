@@ -26,3 +26,9 @@ module.exports.page = async (browser)=>{
   });
   return page
 }
+
+module.exports.screenshot = async (page, name = `page` )=>{
+  const filepath = isDirExitsOrCreate(`${appRoot}/src/screenshots`)
+  await page.screenshot({ path: `${filepath}/${name}.png`  });
+  return page
+}
