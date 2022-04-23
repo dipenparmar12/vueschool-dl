@@ -3,30 +3,13 @@ const delay = require('delay');
 const { screenshot } = require('./browser');
 const logger = require('./utils/logger')
 
-
-const escapeXpathString = str => {
-  const splitedQuotes = str.replace(/'/g, `', "'", '`);
-  return `concat('${splitedQuotes}', '')`;
-};
-
-const clickByText = async (page, text) => {
-  const escapedText = escapeXpathString(text);
-  const linkHandlers = await page.$x(`//a[contains(text(), ${escapedText})]`);
-
-  if (linkHandlers.length > 0) {
-    await linkHandlers[0].click();
-  } else {
-    throw new Error(`Link not found: ${text}`);
-  }
-};
-
-
-module.exports.login = async (page) => {
+module.exports.login = async (browserInstance) => {
 
   const email = process.env.EMAIL
   const password = process.env.PASSWORD
   console.log('Login using EMAIL.....', email)
 
+  const page = await browserInstance.newPage();
   await page.goto('https://vueschool.io/login', { waitUntil: 'networkidle0' }); // wait until page load
   await page.type("input[type=text]", email);
   await page.type("input[type=password]", password);
