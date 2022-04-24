@@ -27,9 +27,11 @@ module.exports.login = async (browserInstance) => {
   console.log("Login success!");
 }
 
-module.exports.scrapAllCourses = async (browserInstance, courseURL = 'https://vueschool.io/courses') => {
-  const page = await browserInstance.newPage();
-  await page.goto(courseURL, { waitUntil: 'networkidle0' }); // wait until page load
+module.exports.scrapAllCourses = async (page, courseURL = 'https://vueschool.io/courses') => {
+  // const page = await browserInstance.newPage();
+
+  // Navigate to some website e.g Our Code World
+  await page.goto(courseURL, { waitUntil: 'networkidle0' });
   await delay(500)
 
   const allCourses = await page.evaluate(
@@ -41,16 +43,17 @@ module.exports.scrapAllCourses = async (browserInstance, courseURL = 'https://vu
         }
       })
   );
-  await page.close()
+
   writeJson(`${appRootPath}/all-courses-list.json`, allCourses)
   return allCourses
 }
 
-module.exports.scrapCourseVideoList = async (browserInstance, courseURL) => {
+module.exports.scrapCourseVideoList = async (page, courseURL) => {
   try {
-    const page = await browserInstance.newPage();
-    await page.goto(courseURL, { waitUntil: 'networkidle0' }); // wait until page load
+    // const page = await browserInstance.newPage();
+    await page.goto(courseURL, { waitUntil: 'networkidle0' });
     await delay(500)
+
     const courseTitle = await page.evaluate(
       () => document.querySelector("h1[title]").textContent
     );
@@ -72,30 +75,26 @@ module.exports.scrapCourseVideoList = async (browserInstance, courseURL) => {
       })
     })
 
-    await page.close()
-
     return {
       course: courseTitle,
       chapters: chapterVideos,
     }
 
   } catch (error) {
+    console.log('website.js::[86] scrapCourseVideoList', error)
     logger.error(error)
     throw error
   }
 }
 
-module.exports.scrapVideoVariants = async (browserInstance, pageUrl) => {
+module.exports.scrapVideoVariants = async (page, pageUrl) => {
   try {
-
-    let data = null
-    const page = await browserInstance.newPage();
     await page.goto(pageUrl, { waitUntil: ["networkidle0", "domcontentloaded"] }); // wait until page load
     // await page.waitForSelector("iframe", { timeout: 5000 });
     await delay(500)
 
     const elementHandle = await page.$('iframe[src]');
-    data = await elementHandle.contentFrame();
+    let data = await elementHandle.contentFrame();
 
     const content = await data.content()
     let videoVariants = []
@@ -104,10 +103,10 @@ module.exports.scrapVideoVariants = async (browserInstance, pageUrl) => {
     let endJson = startJson?.split(']},"lang":"en","sentry":')?.[0]; // End-String
     videoVariants = await eval(`[${endJson}]`); // splitted json in content(html) string
 
-    await page.close()
     return videoVariants
   } catch (error) {
+    console.log('website.js::[86] scrapVideoVariants', error)
     logger.error(error)
-    throw error
+    return []
   }
 }

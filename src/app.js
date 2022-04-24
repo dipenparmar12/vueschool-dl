@@ -12,42 +12,50 @@ const run = async (_courses) => {
   // return test()
   console.log('index.js::[6] Application running......')
   const instance = await puppeteer.launch({ headless: true });
-  // await website.login(instance)
+  // Create a new page
+  const page = await instance.newPage();
+  // Configure the navigation timeout
+  page.setDefaultNavigationTimeout(0);
 
-  // const allCourses = await readJson(`${appRoot}/all-courses-list.json`)
-  const allCourses = await website.scrapAllCourses(instance)
+
+  // await website.login(page)
+
+  // const courseList = await readJson(`${appRoot}/all-courses-list.json`)
+  // const allCourses = await website.scrapAllCourses(page)
+  const allCourses = _courses
+  console.log('app.js::[26] var', allCourses)
 
   const courses = await allCourses.map(async (_course, i) => {
-    const courseVideos = await website.scrapCourseVideoList(instance, _course?.src)
-    const chapters = await courseVideos.chapters.map(async _chapter => {
-      const chapterVideos = _chapter.videos.map(async (vid, i) => {
-        const videoVariantsRes = await website.scrapVideoVariants(instance, vid.src)
+    try {
+      const courseVideos = await website.scrapCourseVideoList(page, _course?.src)
+      console.log('app.js::[29] course vid', courseVideos)
+
+      const chapters = await courseVideos.chapters.map(async _chapter => {
+        const chapterVideos = _chapter.videos.map(async (vid, i) => {
+          const videoVariantsRes = await website.scrapVideoVariants(page, vid.src)
+          return {
+            ...vid,
+            variants: videoVariantsRes,
+          }
+        })
+        const chapterResolved = await Promise.all(chapterVideos).then(res => res)
         return {
-          ...vid,
-          variants: videoVariantsRes,
+          ..._chapter,
+          videos: chapterResolved
         }
       })
-      const chapterResolved = await Promise.all(chapterVideos).then(res => res)
-      return {
-        ..._chapter,
-        videos: chapterResolved
-      }
-    })
 
-    const chaptersResolved = await Promise.all(chapters).then(res => res)
-    const course = { ..._course, chapters: chaptersResolved }
-    await writeJson(`${appRoot}/course-videos/${courseVideos?.course}.json`, course)
+      const chaptersResolved = await Promise.all(chapters).then(res => res)
+      const course = { ..._course, chapters: chaptersResolved }
+      await writeJson(`${appRoot}/course-videos/${courseVideos?.course}.json`, course)
 
-    return course
+      return course
 
-    // const chapterVideosWithVariants = await courseVideos?.chapters.map(async chapter =>
-    //   await chapter?.videos.map(async video => {
-    //     console.log('app.js::[35] video', video)
-    //     const videoVariants = await website.scrapVideoVariants(instance, video?.src)
-    //     return Object.assign(video, { videoVariants })
-    //   }))
-    // console.log('app.js::[43]', chapterVideosWithVariants)
-    // await writeJson(`${appRoot}/course-videos/${courseVideos?.course}.json`, courseVideos)
+    } catch (error) {
+      console.log('app.js::[54] error', error)
+      logger.error(error)
+      return [new Promise((resolve) => { setTimeout(resolve, 100, []); })]
+    }
   });
 
   const test = await Promise.all(courses).then(res => res)
