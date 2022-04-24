@@ -52,7 +52,7 @@ module.exports.scrapCourseVideoList = async (page, courseURL) => {
   try {
     // const page = await browserInstance.newPage();
     await page.goto(courseURL, { waitUntil: 'networkidle0' });
-    await delay(500)
+    await delay(1000)
 
     const courseTitle = await page.evaluate(
       () => document.querySelector("h1[title]").textContent
@@ -91,7 +91,7 @@ module.exports.scrapVideoVariants = async (page, pageUrl) => {
   try {
     await page.goto(pageUrl, { waitUntil: ["networkidle0", "domcontentloaded"] }); // wait until page load
     // await page.waitForSelector("iframe", { timeout: 5000 });
-    await delay(500)
+    await delay(1000)
 
     const elementHandle = await page.$('iframe[src]');
     let data = await elementHandle.contentFrame();

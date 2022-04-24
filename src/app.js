@@ -27,39 +27,38 @@ const run = async (_courses) => {
 
   const courses = await allCourses.map(async (_course, i) => {
     try {
-      const courseVideos = await website.scrapCourseVideoList(page, _course?.src)
-      console.log('app.js::[29] course vid', courseVideos)
+      // const courseVideos = await website.scrapCourseVideoList(page, _course?.src)
+      // console.log('app.js::[29] course vid', courseVideos)
 
-      const chapters = await courseVideos.chapters.map(async _chapter => {
-        const chapterVideos = _chapter.videos.map(async (vid, i) => {
-          const videoVariantsRes = await website.scrapVideoVariants(page, vid.src)
-          return {
-            ...vid,
-            variants: videoVariantsRes,
-          }
-        })
-        const chapterResolved = await Promise.all(chapterVideos).then(res => res)
-        return {
-          ..._chapter,
-          videos: chapterResolved
-        }
-      })
+      // const chapters = await courseVideos.chapters.map(async _chapter => {
+      //   const chapterVideos = _chapter.videos.map(async (vid, i) => {
+      //     const videoVariantsRes = await website.scrapVideoVariants(page, vid.src)
+      //     return {
+      //       ...vid,
+      //       variants: videoVariantsRes,
+      //     }
+      //   })
+      //   const chapterResolved = await Promise.all(chapterVideos).then(res => res)
+      //   return {
+      //     ..._chapter,
+      //     videos: chapterResolved
+      //   }
+      // })
 
-      const chaptersResolved = await Promise.all(chapters).then(res => res)
-      const course = { ..._course, chapters: chaptersResolved }
-      await writeJson(`${appRoot}/course-videos/${courseVideos?.course}.json`, course)
+      // const chaptersResolved = await Promise.all(chapters).then(res => res)
+      // const course = { ..._course, chapters: chaptersResolved }
+      // await writeJson(`${appRoot}/course-videos/${courseVideos?.course}.json`, course)
 
-      return course
+      // return course
 
     } catch (error) {
       console.log('app.js::[54] error', error)
       logger.error(error)
-      return [new Promise((resolve) => { setTimeout(resolve, 100, []); })]
+      throw error
     }
   });
 
   const test = await Promise.all(courses).then(res => res)
-  console.log('app.js::[54] test', test)
   return test
 
   // const courses = getFilesOfDir('course-videos')
@@ -68,7 +67,6 @@ const run = async (_courses) => {
   // writeJson(`${appRoot}/video.json`, video)
   // logger.htmlLog.info(video)
   // await instance.close()
-
 }
 
 
