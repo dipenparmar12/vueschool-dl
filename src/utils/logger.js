@@ -27,12 +27,11 @@ const options = {
       // format.printf((info) => `${info.timestamp} ${info.level}: ${info.message}`),
     ),
   },
-
   file: {
-    level: 'info',
+    level: 'debug',
     filename: `${appRoot}/logs/${new Date().toISOString().slice(0, 10)}.log`, // Date=YYYY-MM-DD
     handleExceptions: true,
-    json: false,
+    json: true,
     maxsize: 5242880, // 5MB
     maxFiles: 30,
     colorize: false,
@@ -40,24 +39,38 @@ const options = {
       format.prettyPrint(),
       format.splat(),
       format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-      format.printf(printf)
-      // format.printf((info) => `[${info.timestamp}] ${info.level}: ${info.message}`),
+      format.printf(printf),
     ),
-    options: { flags: 'w' } // Disable appending clean every log
   },
-
-  html: {
-    level: 'info',
-    filename: `${appRoot}/logs/${new Date().toISOString().slice(0, 10)}.html`, // Date=YYYY-MM-DD
-    handleExceptions: false,
+  fresh: {
+    level: 'debug',
+    filename: `${appRoot}/logs/fresh.log`,
+    handleExceptions: true,
     json: true,
     maxsize: 5242880, // 5MB
-    maxFiles: 365,
+    maxFiles: 30,
     colorize: false,
     format: format.combine(
       format.prettyPrint(),
       format.splat(),
-      format.printf((info) => (info.message))
+      format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+      format.printf(printf),
+    ),
+    options: { flags: 'w' } // Disable appending clean every log
+  },
+  html: {
+    level: 'info',
+    filename: `${appRoot}/logs/${new Date().toISOString().slice(0, 10)}.html`, // Date=YYYY-MM-DD
+    handleExceptions: false,
+    json: false,
+    maxsize: 5242880, // 5MB
+    maxFiles: 365,
+    colorize: false,
+    format: format.combine(
+      // format.prettyPrint(),
+      format.splat(),
+      format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
+      format.printf((info) => info.message),
     ),
     options: { flags: 'w' } // Disable appending clean every log
   },
@@ -67,17 +80,20 @@ const logger = winston.createLogger({
   level: env === 'development' ? 'debug' : 'info',
   transports: [
     new winston.transports.Console(options.console),
-    new winston.transports.File(options.file)
+    new winston.transports.File(options.fresh),
+    new winston.transports.File(options.file),
   ],
 });
 
-// const htmlLog = winston.createLogger({
-//   level: env === 'development' ? 'debug' : 'info',
-//   transports: [new winston.transports.File(options.html)],
-// });
+const htmlLog = winston.createLogger({
+  level: env === 'development' ? 'debug' : 'info',
+  transports: [
+    new winston.transports.File(options.html)
+  ],
+});
 
 module.exports = logger;
-// module.exports.htmlLog = htmlLog;
+module.exports.htmlLog = htmlLog;
 // module.exports.mailLog = mailLog;
 
 /// Usage example

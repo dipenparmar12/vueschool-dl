@@ -4,7 +4,6 @@ const { screenshot } = require('./browser');
 const logger = require('./utils/logger')
 
 module.exports.login = async (browserInstance) => {
-
   const email = process.env.EMAIL
   const password = process.env.PASSWORD
   console.log('Login using EMAIL.....', email)
@@ -22,14 +21,12 @@ module.exports.login = async (browserInstance) => {
   ]);
 
   screenshot(page, '2 redirect-profile')
-
+  await page.close()
   console.log("Login success!");
 
 }
 
-
-
-module.exports.getAllCourses = async (browserInstance, courseURL = 'https://vueschool.io/courses') => {
+module.exports.scrapAllCourses = async (browserInstance, courseURL = 'https://vueschool.io/courses') => {
   const page = await browserInstance.newPage();
   await page.goto(courseURL, { waitUntil: 'networkidle0' }); // wait until page load
   await delay(500)
@@ -38,20 +35,19 @@ module.exports.getAllCourses = async (browserInstance, courseURL = 'https://vues
     () => Array.from(document.querySelectorAll("h3"))
       .map(h3 => {
         return {
-          href: h3.closest("a").href,
+          src: h3.closest("a").href,
           title: h3?.textContent?.replaceAll('\n', '')
         }
       })
   );
-
+  await page.close()
   return courses
 }
 
-module.exports.getVideoList = async (browser, courseURL) => {
-  const page = await browser.page(instance)
+module.exports.scrapCourseVideoList = async (browserInstance, courseURL) => {
+  const page = await browserInstance.newPage();
   await page.goto(courseURL, { waitUntil: 'networkidle0' }); // wait until page load
-  await delay(1000)
-
+  // await delay(1000)
   const courseTitle = await page.evaluate(
     () => document.querySelector("h1[title]").textContent
   );
@@ -59,25 +55,51 @@ module.exports.getVideoList = async (browser, courseURL) => {
   console.log('website.js::[60]', `Fetching ${courseTitle} course videos links.`)
   // const loadingBar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
 
-  const videos = await page.evaluate(() => {
+  const chapterVideos = await page.evaluate(() => {
     let chaptersN = Array.from(document.querySelectorAll('div.chapter'))
     const chapterTitles = chaptersN.map(el => el.querySelector('h2').innerHTML)
     chaptersN = chaptersN.map(el => Array.from(el.querySelectorAll("a[class='title']")))
     // return chaptersN[0][0].href || chaptersN[0][0].innerHTML;
     return chaptersN.map((links, index) => {
+      const videos = links.map(el => ({ src: el.href, title: el.innerHTML }))
       return {
         chapter: chapterTitles[index],
-        videos: links.map(el => ({
-          href: el.href,
-          title: el.innerHTML,
-        }))
+        videos: videos
       }
     })
   })
 
+  await page.close()
+
   return {
     course: courseTitle,
-    chapters: videos
+    chapters: chapterVideos,
   }
 
+}
+
+module.exports.scrapVideoVariants = async (browserInstance, pageUrl) => {
+  const url = "https://vueschool.io/lessons/what-is-nuxtjs"
+  let data = null
+  const page = await browserInstance.newPage();
+  await page.goto(url, { waitUntil: ["networkidle0", "domcontentloaded"] }); // wait until page load
+  await page.waitForSelector("iframe", { timeout: 3000 });
+
+  const elementHandle = await page.$('iframe[src]');
+  data = await elementHandle.contentFrame();
+
+  const content = await data.content()
+  let videoVariants = []
+
+  let startJson = content?.split(`progressive":[`)?.[1]; // Start-String 
+  let endJson = startJson?.split(']},"lang":"en","sentry":')?.[0]; // End-String
+  videoVariants = await eval(`[${endJson}]`); // splitted json in content(html) string
+
+  // try { } catch (error) {
+  //   logger.error(error)
+  //   return videoVariants
+  // }
+
+  await page.close()
+  return videoVariants
 }
