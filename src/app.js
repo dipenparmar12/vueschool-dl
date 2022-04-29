@@ -1,7 +1,12 @@
-const puppeteer = require('puppeteer')
 const appRoot = require('app-root-path')
+const browserObject = require('./browser')
+const scraperController = require('./site/pageController')
 
-const run = async (_courses) => {}
+let browserInstance = browserObject.startBrowser()
+
+const run = async () => {
+  await scraperController(browserInstance)
+}
 
 module.exports = {
   run,

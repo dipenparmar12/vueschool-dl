@@ -1,10 +1,9 @@
-/* eslint-disable prettier/prettier */
 module.exports = {
   env: {
-    browser: true,
+    browser: false,
     commonjs: true,
-    es2021: true,
     node: true,
+    es2021: true,
   },
   extends: ['eslint:recommended', 'prettier'],
   parserOptions: {
@@ -13,6 +12,8 @@ module.exports = {
   root: true,
   rules: {
     'no-unreachable': 1,
+    'no-empty': 1,
+    'no-undef': 1,
     'import/no-dynamic-require': 0,
     'global-require': 0,
     'import/prefer-default-export': 0,
