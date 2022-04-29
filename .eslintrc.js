@@ -11,6 +11,7 @@ module.exports = {
   },
   root: true,
   rules: {
+    'no-async-promise-executor': 1,
     'no-unreachable': 1,
     'no-empty': 1,
     'no-undef': 1,
