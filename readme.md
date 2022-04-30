@@ -4,7 +4,7 @@
 
 ## HOW TO USE:
 1. clone this repository `git clone git@github.com:dipenparmar12/vueschool-dl.git`
-2. `yarn install`
+2. `cd vueschool-dl` && `yarn install`
 3. Change variables in `.env.example` & rename it `.env` 
 4. add/uncomment URL's of course you want to download to `courses.js` list array
 5. `yarn download` or `npm run download` 
