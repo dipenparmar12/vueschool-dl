@@ -1,8 +1,29 @@
 const fse = require('fs-extra')
 const rootPath = require('app-root-path')
-
-const { interception } = require('../browserObj')
+const { interception, screenshot } = require('../browserObj')
 const logger = require('../utils/logger')
+
+module.exports.login = async (browserInstance) => {
+  const email = process.env.EMAIL
+  const password = process.env.PASSWORD
+  console.log('Login using EMAIL.....', email)
+  const browser = await browserInstance
+  const page = await browser.newPage()
+  await page.goto('https://vueschool.io/login', { waitUntil: 'networkidle0' }) // wait until page load
+  await page.type('input[type=text]', email)
+  await page.type('input[type=password]', password)
+  // await screenshot(page, '1 LoginPage')
+
+  // // click and wait for navigation
+  await Promise.all([
+    page.click(`button.btn[tabindex]`),
+    page.waitForNavigation({ waitUntil: 'networkidle0' }),
+  ])
+
+  await screenshot(page, '2 redirect-profile')
+  await page.close()
+  console.log('Login success!')
+}
 
 module.exports.scrapeAll = async function scrapeAll(browserInstance, courses) {
   let browser

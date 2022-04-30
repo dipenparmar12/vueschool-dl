@@ -4,10 +4,10 @@
   "description": "Vue Shool downloader",
   "main": "index.js",
   "scripts": {
+    "download": "node index.js",
     "dev": "nodemon --ignore *.json --ignore *.log index.js",
     "format": "eslint src --fix --cache && prettier --write ./src",
     "lint": "eslint src --fix --cache",
-    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

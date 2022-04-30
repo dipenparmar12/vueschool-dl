@@ -1,4 +1,6 @@
 const puppeteer = require('puppeteer')
+const rootPath = require('app-root-path')
+const { isDirExitsOrCreate } = require('./utils/fileSystem')
 const logger = require('./utils/logger')
 const headless = true
 
@@ -16,6 +18,15 @@ module.exports.startBrowser = async function startBrowser() {
     logger.error(error)
     console.log('Could not create a browser instance => : ', error)
   }
+}
+
+module.exports.screenshot = async (page, name = `page`) => {
+  // return page // TODO:::REMOVE
+  if (process.env.SCREENSHOTS) {
+    const filepath = await isDirExitsOrCreate(`${rootPath}/screenshots`)
+    await page.screenshot({ path: `${filepath}/${name}.png` })
+  }
+  return page
 }
 
 /**

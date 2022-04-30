@@ -1,9 +1,22 @@
+### CAUTION: This script was made just for fun as a weekend project without intent to falsify videos or doing any illegal activities related to Vue School videos. Use of downloaded videos is strictly prohibited. If you want to watch them, go to vue-school.io official site!  
+
+### Vue School downloader 
+
+## HOW TO USE:
+1. clone this repository `git clone git@github.com:dipenparmar12/vueschool-dl.git`
+2. `yarn install`
+3. Change variables in `.env.example` & rename it `.env` 
+4. add URL of courses you want to download to `courses.json` list array
+5. `yarn download` or `npm run download` 
+   
+
 ### TODO 
 
 1. Simple Documentation.
 2. Download ETA or Process bar,
-3. CLI Option to Overwrite existing downloaded videos
-4. Force download courses-json data or skip if exits 
+3. Use Login Cookie's to access video files.
+4. CLI Option to Overwrite existing downloaded videos.
+5. Force download courses-json data or skip if exits.
 
 ### MISC
 
