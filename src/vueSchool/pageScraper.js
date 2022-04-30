@@ -14,6 +14,7 @@ module.exports.scrapeAll = async function scrapeAll(browserInstance, courses) {
 
     console.log('pageController.js::[5] browser, Page loaded')
 
+    let scrapedCourses = []
     for (const courseURL of courses) {
       const courseContent = await this.courseScraper(page, courseURL, browser)
       await fse.outputFile(
@@ -21,6 +22,8 @@ module.exports.scrapeAll = async function scrapeAll(browserInstance, courses) {
         JSON.stringify(courseContent, null, 2)
       )
       // logger.info(courseContent)
+      scrapedCourses.push(courseContent)
+
       console.log(
         `pageScraper.js::[22] Scrap completed::${courseContent?.title}`
       )
@@ -31,6 +34,7 @@ module.exports.scrapeAll = async function scrapeAll(browserInstance, courses) {
     )
 
     await page.close()
+    return scrapedCourses
   } catch (error) {
     logger.error(error)
   }
@@ -81,13 +85,13 @@ module.exports.courseScraper = async function courseScraper(
         console.log('pageScraper.js::[69] video::', video?.title)
         const variants = await this.videoVariantsScrap(page, video?.src)
         chapter.videos.push({
-          videoTitle: video?.title,
+          title: video?.title,
           src: video?.src,
           variants: variants,
         })
       } catch (err) {
         chapter.videos.push({
-          videoTitle: video?.title,
+          title: video?.title,
           src: video?.src,
           err: err,
           variants: null,
