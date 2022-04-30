@@ -12,11 +12,11 @@
 
 ### TODO 
 
-1. Simple Documentation.
-2. Download ETA or Process bar,
-3. Use Login Cookie's to access video files.
-4. CLI Option to Overwrite existing downloaded videos.
-5. Force download courses-json data or skip if exits.
+- [x] Simple Documentation.
+- [ ] Download ETA or Process bar,
+- [ ] Use Login Cookie's to access video files.
+- [ ] CLI Option to Overwrite existing downloaded videos.
+- [ ] Force download courses-json data or skip if exits.
 
 ### MISC
 
