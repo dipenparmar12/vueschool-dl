@@ -6,7 +6,7 @@
 1. clone this repository `git clone git@github.com:dipenparmar12/vueschool-dl.git`
 2. `yarn install`
 3. Change variables in `.env.example` & rename it `.env` 
-4. add URL of courses you want to download to `courses.json` list array
+4. add/uncomment URL's of course you want to download to `courses.js` list array
 5. `yarn download` or `npm run download` 
    
 

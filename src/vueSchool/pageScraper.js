@@ -25,7 +25,53 @@ module.exports.login = async (browserInstance) => {
   console.log('Login success!')
 }
 
-module.exports.scrapeAll = async function scrapeAll(browserInstance, courses) {
+module.exports.scrapeCourseJson = async (
+  browserInstance,
+  courseURL = 'https://vueschool.io/courses'
+) => {
+  let browser = await browserInstance
+  const page = await interception(await browser.newPage())
+  page.setDefaultNavigationTimeout(0)
+
+  // Navigate to some website e.g Our Code World
+  await page.goto(courseURL, { waitUntil: 'networkidle0' })
+
+  const allCourses = await page.evaluate(() =>
+    [...document.querySelectorAll('h3')].map((h3) => {
+      return {
+        src: h3.closest('a').href,
+        title: h3?.textContent?.replaceAll('\n', ''),
+        test: h3?.querySelector('div.inline-block')?.innerText,
+      }
+    })
+  )
+
+  // const allCourses = await page.$$eval('h3', (_h3s) => {
+  //   return [..._h3s].map((h3) => {
+  //     return {
+  //       src: h3.closest('a').href,
+  //       title: h3?.textContent?.replaceAll('\n', ''),
+  //       courseType: h3?.querySelector('div.inline-block')?.innerText || '',
+  //     }
+  //   })
+  // })
+
+  console.log('pageScraper.js::[57] ', allCourses[1])
+
+  await fse.outputFile(
+    `${rootPath}/all-courses-list.json`,
+    JSON.stringify(allCourses, null, 2)
+  )
+
+  // await fse.writeJson(`${rootPath}/all-courses-list.json`, allCourses)
+  await page.close()
+  return allCourses
+}
+
+module.exports.scrapeCourseMetaData = async function (
+  browserInstance,
+  courses
+) {
   let browser
   console.log('pageController.js::[5] loading browser...')
   try {
@@ -46,18 +92,19 @@ module.exports.scrapeAll = async function scrapeAll(browserInstance, courses) {
       scrapedCourses.push(courseContent)
 
       console.log(
-        `pageScraper.js::[22] Scrap completed::${courseContent?.title}`
+        `pageScraper.js::[22] Meta-Data Scraped::${courseContent?.title}`
       )
     }
 
     console.log(
-      `pageScraper.js::[27] Scrap data stored at: "root/courses-json" `
+      `pageScraper.js::[27] Meta-Data stored at: "root/courses-json" `
     )
 
     await page.close()
     return scrapedCourses
   } catch (error) {
-    logger.error(error)
+    console.log('pageScraper.js::[63] error', error)
+    logger.error(error.toString())
   }
 }
 

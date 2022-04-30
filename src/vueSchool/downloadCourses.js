@@ -5,7 +5,7 @@ const logger = require('../utils/logger')
 const request = require('../utils/request')
 const str = require('../utils/str')
 
-module.exports.downloadCourses = async function scrapeAll(_courses) {
+module.exports.downloadCourses = async function (_courses) {
   try {
     const courseDir = `${rootPath}\\courses-json`
     const courses = await fileSystem.getFiles(courseDir)
@@ -33,7 +33,7 @@ module.exports.downloadCourses = async function scrapeAll(_courses) {
 
           try {
             console.log(
-              'downloadCourses.js::[30] Downloading....',
+              'downloadCourses.js::[30] Downloading......',
               vidObj?.title
             )
             const downloadPath = `${rootPath}/downloads/${course?.title}/${chapter?.title}`
@@ -45,10 +45,7 @@ module.exports.downloadCourses = async function scrapeAll(_courses) {
               `${downloadPath}/${fileName}-${quality}.mp4`
             )
 
-            console.info(
-              'downloadCourses.js::[30] downloaded:: :::',
-              vidObj?.title
-            )
+            console.info('downloadCourses.js::[30] downloaded:', vidObj?.title)
 
             index++
           } catch (error) {

@@ -6,8 +6,9 @@ const courses = require('../courses')
 let browserInstance = browserObj.startBrowser()
 
 const run = async () => {
+  // await vueSchool.scrapeCourseJson(browserInstance)
   await vueSchool.login(browserInstance)
-  await vueSchool.scrapeAll(browserInstance, courses)
+  await vueSchool.scrapeCourseMetaData(browserInstance, courses)
   await downloadCourses()
 }
 
