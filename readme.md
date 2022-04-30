@@ -14,7 +14,7 @@
 
 - [x] Simple Documentation.
 - [ ] Download ETA or Process bar,
-- [ ] Use Login Cookie's to access video files.
+- [ ] Use direct Login using **Cookie** file to access video files.
 - [ ] CLI Option to Overwrite existing downloaded videos.
 - [ ] Force download courses-json data or skip if exits.
 

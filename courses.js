@@ -2,7 +2,6 @@
 module.exports = [
   'https://vueschool.io/courses/nuxtjs-fundamentals',
   'https://vueschool.io/courses/vuex-for-everyone',
-
   // 'https://vueschool.io/courses/the-vuejs-3-master-class',
   // 'https://vueschool.io/courses/vue-js-fundamentals-with-the-composition-api',
   // 'https://vueschool.io/courses/vuejs-3-fundamentals',

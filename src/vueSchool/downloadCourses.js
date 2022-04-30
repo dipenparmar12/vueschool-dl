@@ -5,7 +5,7 @@ const logger = require('../utils/logger')
 const request = require('../utils/request')
 const str = require('../utils/str')
 
-module.exports.downloadCourses = async function (_courses) {
+module.exports.downloadCourses = async function () {
   try {
     const courseDir = `${rootPath}\\courses-json`
     const courses = await fileSystem.getFiles(courseDir)
@@ -32,10 +32,7 @@ module.exports.downloadCourses = async function (_courses) {
           // // downloads/course-title/chapter/video-title-[quality].mp3
 
           try {
-            console.log(
-              'downloadCourses.js::[30] Downloading......',
-              vidObj?.title
-            )
+            console.log('Downloading......', vidObj?.title)
             const downloadPath = `${rootPath}/downloads/${course?.title}/${chapter?.title}`
             const fileName = str.sensitize(vidObj?.title)
 
@@ -45,7 +42,7 @@ module.exports.downloadCourses = async function (_courses) {
               `${downloadPath}/${fileName}-${quality}.mp4`
             )
 
-            console.info('downloadCourses.js::[30] downloaded:', vidObj?.title)
+            logger.info(`downloaded: ${vidObj?.title}`)
 
             index++
           } catch (error) {
@@ -54,6 +51,8 @@ module.exports.downloadCourses = async function (_courses) {
         }
       }
     }
+
+    logger.info("Congrats's download completed.......")
   } catch (error) {
     console.log('downloadCourses.js::[36] error', error) //  error.toString()
     logger.error(error.toString())

@@ -1,5 +1,5 @@
 const browserObj = require('./browserObj')
-const vueSchool = require('./vueSchool/pageScraper')
+const vueSchool = require('./vueSchool/scraper')
 const { downloadCourses } = require('./vueSchool/downloadCourses')
 const courses = require('../courses')
 
@@ -10,6 +10,7 @@ const run = async () => {
   await vueSchool.login(browserInstance)
   await vueSchool.scrapeCourseMetaData(browserInstance, courses)
   await downloadCourses()
+  process.exit()
 }
 
 module.exports = {

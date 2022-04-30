@@ -2,6 +2,7 @@ const fse = require('fs-extra')
 const rootPath = require('app-root-path')
 const { interception, screenshot } = require('../browserObj')
 const logger = require('../utils/logger')
+const { sensitize } = require('../utils/str')
 
 module.exports.login = async (browserInstance) => {
   const email = process.env.EMAIL
@@ -20,7 +21,7 @@ module.exports.login = async (browserInstance) => {
     page.waitForNavigation({ waitUntil: 'networkidle0' }),
   ])
 
-  await screenshot(page, '2 redirect-profile')
+  // await screenshot(page, '2 redirect-profile')
   await page.close()
   console.log('Login success!')
 }
@@ -84,21 +85,18 @@ module.exports.scrapeCourseMetaData = async function (
     let scrapedCourses = []
     for (const courseURL of courses) {
       const courseContent = await this.courseScraper(page, courseURL, browser)
+      // logger.info(courseContent.title)
+
       await fse.outputFile(
         `${rootPath}/courses-json/${courseContent?.title}.json`,
         JSON.stringify(courseContent, null, 2)
       )
       // logger.info(courseContent)
       scrapedCourses.push(courseContent)
-
-      console.log(
-        `pageScraper.js::[22] Meta-Data Scraped::${courseContent?.title}`
-      )
+      logger.info(`Meta-Data Scraped::${courseContent?.title}`)
     }
 
-    console.log(
-      `pageScraper.js::[27] Meta-Data stored at: "root/courses-json" `
-    )
+    logger.info(`Meta-Data stored at: "./courses-json" `)
 
     await page.close()
     return scrapedCourses
@@ -114,13 +112,14 @@ module.exports.courseScraper = async function courseScraper(
   browser
 ) {
   // await page.goto(courseURL, { waitUntil: 'networkidle0' })
-  console.log(`pageScraper.js::[33]  Navigating to ${courseURL}...`)
+  logger.info(`Navigating to ${courseURL}...`)
   await page.goto(courseURL)
   const courseTitle = await page.$eval('h1[title]', (h1) => h1?.textContent)
 
   const chapters = await page.$$eval('div.chapter', (_DivChapter) =>
     [..._DivChapter].map((_Chapter) => {
-      const chapterTitle = _Chapter.querySelector('h2').innerHTML
+      const chapterTitle = _Chapter.querySelector('h2').textContent
+      // return { title: 'test-title', videos: [] }
       const videos = [..._Chapter.querySelectorAll("a[class='title']")].map(
         (_Video) => {
           return {
@@ -129,7 +128,6 @@ module.exports.courseScraper = async function courseScraper(
           }
         }
       )
-
       return {
         title: chapterTitle,
         videos: videos,
@@ -138,7 +136,7 @@ module.exports.courseScraper = async function courseScraper(
   )
 
   const courseJson = {
-    title: courseTitle,
+    title: sensitize(courseTitle),
     chapters: [],
   }
 
@@ -150,7 +148,7 @@ module.exports.courseScraper = async function courseScraper(
 
     for (const video of _chapter?.videos) {
       try {
-        console.log('pageScraper.js::[69] video::', video?.title)
+        console.log('Found video::', video?.title)
         const variants = await this.videoVariantsScrap(page, video?.src)
         chapter.videos.push({
           title: video?.title,
