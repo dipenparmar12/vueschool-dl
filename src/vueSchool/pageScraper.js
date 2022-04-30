@@ -21,10 +21,14 @@ module.exports.scrapeAll = async function scrapeAll(browserInstance, courses) {
         JSON.stringify(courseContent, null, 2)
       )
       // logger.info(courseContent)
-      console.log(`pageScraper.js::[22] Scrap completed::${courseContent?.title}`)
+      console.log(
+        `pageScraper.js::[22] Scrap completed::${courseContent?.title}`
+      )
     }
 
-    console.log(`pageScraper.js::[27] Scrap data stored at: "root/courses-json" `)
+    console.log(
+      `pageScraper.js::[27] Scrap data stored at: "root/courses-json" `
+    )
 
     await page.close()
   } catch (error) {
@@ -32,7 +36,11 @@ module.exports.scrapeAll = async function scrapeAll(browserInstance, courses) {
   }
 }
 
-module.exports.courseScraper = async function courseScraper(page, courseURL, browser) {
+module.exports.courseScraper = async function courseScraper(
+  page,
+  courseURL,
+  browser
+) {
   // await page.goto(courseURL, { waitUntil: 'networkidle0' })
   console.log(`pageScraper.js::[33]  Navigating to ${courseURL}...`)
   await page.goto(courseURL)
@@ -41,12 +49,14 @@ module.exports.courseScraper = async function courseScraper(page, courseURL, bro
   const chapters = await page.$$eval('div.chapter', (_DivChapter) =>
     [..._DivChapter].map((_Chapter) => {
       const chapterTitle = _Chapter.querySelector('h2').innerHTML
-      const videos = [..._Chapter.querySelectorAll("a[class='title']")].map((_Video) => {
-        return {
-          title: _Video.innerHTML,
-          src: _Video.href,
+      const videos = [..._Chapter.querySelectorAll("a[class='title']")].map(
+        (_Video) => {
+          return {
+            title: _Video.innerHTML,
+            src: _Video.href,
+          }
         }
-      })
+      )
 
       return {
         title: chapterTitle,

@@ -1,34 +1,33 @@
-const winston = require('winston');
-const { format } = require('winston');
-const appRoot = require('app-root-path');
+const winston = require('winston')
+const { format } = require('winston')
+const appRoot = require('app-root-path')
 const env = process.env.NODE_ENV
 
 /**
- * 
- * @returns 
+ *
+ * @returns
  * @see https://www.codegrepper.com/code-examples/javascript/frameworks/dist/TypeError%3A+Converting+circular+structure+to+JSON
  */
 const getCircularReplacer = () => {
-  const seen = new WeakSet();
+  const seen = new WeakSet()
   return (key, value) => {
-    if (typeof value === "object" && value !== null) {
+    if (typeof value === 'object' && value !== null) {
       if (seen.has(value)) {
-        return;
+        return
       }
-      seen.add(value);
+      seen.add(value)
     }
-    return value;
-  };
-};
-
+    return value
+  }
+}
 
 const printf = (info) => {
   if (typeof info.message === 'object') {
     // eslint-disable-next-line no-param-reassign
-    info.message = JSON.stringify(info.message, getCircularReplacer(), 3);
+    info.message = JSON.stringify(info.message, getCircularReplacer(), 3)
   }
-  return `[${info.timestamp}] ${info.level}:: ${info.message}`;
-};
+  return `[${info.timestamp}] ${info.level}:: ${info.message}`
+}
 
 const options = {
   console: {
@@ -58,7 +57,7 @@ const options = {
       format.prettyPrint(),
       format.splat(),
       format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-      format.printf(printf),
+      format.printf(printf)
     ),
   },
   fresh: {
@@ -73,9 +72,9 @@ const options = {
       format.prettyPrint(),
       format.splat(),
       format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-      format.printf(printf),
+      format.printf(printf)
     ),
-    options: { flags: 'w' } // Disable appending clean every log
+    options: { flags: 'w' }, // Disable appending clean every log
   },
   html: {
     level: 'info',
@@ -89,11 +88,11 @@ const options = {
       // format.prettyPrint(),
       format.splat(),
       format.timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-      format.printf((info) => info.message),
+      format.printf((info) => info.message)
     ),
-    options: { flags: 'w' } // Disable appending clean every log
+    options: { flags: 'w' }, // Disable appending clean every log
   },
-};
+}
 
 const logger = winston.createLogger({
   level: env === 'development' ? 'debug' : 'info',
@@ -102,7 +101,7 @@ const logger = winston.createLogger({
     new winston.transports.File(options.fresh),
     new winston.transports.File(options.file),
   ],
-});
+})
 
 // const htmlLog = winston.createLogger({
 //   level: env === 'development' ? 'debug' : 'info',
@@ -111,7 +110,7 @@ const logger = winston.createLogger({
 //   ],
 // });
 
-module.exports = logger;
+module.exports = logger
 // module.exports.htmlLog = htmlLog;
 // module.exports.mailLog = mailLog;
 

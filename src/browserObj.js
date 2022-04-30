@@ -2,7 +2,7 @@ const puppeteer = require('puppeteer')
 const logger = require('./utils/logger')
 const headless = true
 
-module.exports.startBrowser =  async function startBrowser() {
+module.exports.startBrowser = async function startBrowser() {
   let browser
   try {
     console.log('browser.js::[7] Opening the browser......')
@@ -19,13 +19,16 @@ module.exports.startBrowser =  async function startBrowser() {
 }
 
 /**
- * 
- * @param {*} page 
- * @param {*} resourceTypes 
+ *
+ * @param {*} page
+ * @param {*} resourceTypes
  * @returns Object page
  * @see https://www.scrapehero.com/how-to-increase-web-scraping-speed-using-puppeteer/
  */
-module.exports.interception = async (page, resourceTypes = ['image', 'stylesheet', 'font']) =>{
+module.exports.interception = async (
+  page,
+  resourceTypes = ['image', 'stylesheet', 'font']
+) => {
   await page.setRequestInterception(true)
   page.on('request', (request) => {
     if (resourceTypes.indexOf(request.resourceType()) !== -1) {
