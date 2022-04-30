@@ -74,13 +74,13 @@ module.exports.scrapeCourseMetaData = async function (
   courses
 ) {
   let browser
-  console.log('pageController.js::[5] loading browser...')
+  console.log(new Date(), 'loading browser...')
   try {
     browser = await browserInstance
     const page = await interception(await browser.newPage())
     page.setDefaultNavigationTimeout(0)
 
-    console.log('pageController.js::[5] browser, Page loaded')
+    console.log(new Date(), 'browser, Page loaded')
 
     let scrapedCourses = []
     for (const courseURL of courses) {
@@ -101,8 +101,8 @@ module.exports.scrapeCourseMetaData = async function (
     await page.close()
     return scrapedCourses
   } catch (error) {
-    console.log('pageScraper.js::[63] error', error)
-    logger.error(error.toString())
+    console.log('Error:::', error)
+    logger.error(`${error.toString()}`)
   }
 }
 
@@ -148,7 +148,10 @@ module.exports.courseScraper = async function courseScraper(
 
     for (const video of _chapter?.videos) {
       try {
-        console.log('Found video::', video?.title)
+        console.log(
+          'Found video::',
+          `Chapter:${_chapter?.title}, Vid:${video?.title}`
+        )
         const variants = await this.videoVariantsScrap(page, video?.src)
         chapter.videos.push({
           title: video?.title,
@@ -156,6 +159,8 @@ module.exports.courseScraper = async function courseScraper(
           variants: variants,
         })
       } catch (err) {
+        console.log('Error:::', video?.title, err)
+        logger.error(`Chapter::${_chapter?.title} -> ${video?.title}`)
         chapter.videos.push({
           title: video?.title,
           src: video?.src,
@@ -187,6 +192,8 @@ module.exports.videoVariantsScrap = async (page, _url) => {
     let startJson = content?.split(`progressive":[`)?.[1] // Start-String
     let endJson = startJson?.split(']},"lang":"en","sentry":')?.[0] // End-String
     videoVariants = await eval(`[${endJson}]`) // splitted json in content(html) string
-  } catch (error) {}
+  } catch (error) {
+    console.log('scraper.js::[191] error::', error, _url)
+  }
   return videoVariants
 }

@@ -42,11 +42,20 @@ module.exports.downloadCourses = async function () {
               `${downloadPath}/${fileName}-${quality}.mp4`
             )
 
-            logger.info(`downloaded: ${vidObj?.title}`)
+            logger.info(`downloaded: ${vidObj?.title} Quality:${quality}`)
 
             index++
           } catch (error) {
-            console.log('downloadCourses.js::[49] error', error)
+            logger.error(
+              `ERROR:: ${error.toString()} Course::${course?.title} Chapter::${
+                chapter?.title
+              } Vid::${vidObj?.title}`
+            )
+            console.log(
+              'downloadCourses.js::[49] error',
+              error,
+              `Course::${course?.title} Chapter::${chapter?.title} Vid::${vidObj?.title}`
+            )
           }
         }
       }
