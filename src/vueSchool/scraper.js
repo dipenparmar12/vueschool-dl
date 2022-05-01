@@ -93,7 +93,7 @@ module.exports.scrapeCourseMetaData = async function (
       )
       // logger.info(courseContent)
       scrapedCourses.push(courseContent)
-      logger.info(`Meta-Data Scraped::${courseContent?.title}`)
+      logger.info(`Meta-Data Scraped:: ${courseContent?.title}`)
     }
 
     logger.info(`Meta-Data stored at: "./courses-json" `)
@@ -150,7 +150,7 @@ module.exports.courseScraper = async function courseScraper(
       try {
         console.log(
           'Found video::',
-          `Chapter:${_chapter?.title}, Vid:${video?.title}`
+          `Course-> ${courseTitle}, Vid:${video?.title}`
         )
         const variants = await this.videoVariantsScrap(page, video?.src)
         chapter.videos.push({
@@ -160,7 +160,7 @@ module.exports.courseScraper = async function courseScraper(
         })
       } catch (err) {
         console.log('Error:::', video?.title, err)
-        logger.error(`Chapter::${_chapter?.title} -> ${video?.title}`)
+        logger.error(`Course-> ${courseTitle} -> ${video?.title}`)
         chapter.videos.push({
           title: video?.title,
           src: video?.src,

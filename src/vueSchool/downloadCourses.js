@@ -47,21 +47,17 @@ module.exports.downloadCourses = async function () {
             index++
           } catch (error) {
             logger.error(
-              `ERROR:: ${error.toString()} Course::${course?.title} Chapter::${
-                chapter?.title
-              } Vid::${vidObj?.title}`
+              `${error.toString()} Course::${course?.title}  Vid::${
+                vidObj?.title
+              }`
             )
-            console.log(
-              'downloadCourses.js::[49] error',
-              error,
-              `Course::${course?.title} Chapter::${chapter?.title} Vid::${vidObj?.title}`
-            )
+            console.log(error, ` Vid::${vidObj?.title}`)
           }
         }
       }
     }
 
-    logger.info("Congrats's download completed.......")
+    logger.info('Process Completed.......')
   } catch (error) {
     console.log('downloadCourses.js::[36] error', error) //  error.toString()
     logger.error(error.toString())
