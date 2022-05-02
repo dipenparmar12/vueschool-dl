@@ -18,8 +18,10 @@ module.exports.downloadCourses = async function () {
         continue
       }
 
+      let cIdx = 1
       // Courses have many Chapters (1:M), [ title, videos[Obj] ]
       for (const chapter of course.chapters) {
+        let vId = 1
         // Chapter has many videos (1:M), [ title, src, variants[{url,quality}] ]
         for (const vidObj of chapter.videos) {
           const quality = process.env.VIDEO_QUALITY || '360p'
@@ -32,28 +34,34 @@ module.exports.downloadCourses = async function () {
           // // downloads/course-title/chapter/video-title-[quality].mp3
 
           try {
-            console.log('Downloading......', vidObj?.title)
-            const downloadPath = `${rootPath}/downloads/${course?.title}/${chapter?.title}`
+            console.log(`Downloading......${vId} ${vidObj?.title}`)
+            const downloadPath = `${rootPath}/downloads/${course?.title}/${cIdx}-${chapter?.title}`
             const fileName = str.sensitize(vidObj?.title)
 
             await fileSystem.isDirExitsOrCreate(downloadPath)
             await request.download_stream(
               videoUrl,
-              `${downloadPath}/${fileName}-${quality}.mp4`
+              `${downloadPath}/${cIdx}.${vId} ${fileName}-${quality}.mp4`
             )
 
-            logger.info(`downloaded: ${vidObj?.title} Quality:${quality}`)
+            logger.info(
+              `downloaded: ${cIdx}.${vId} ${vidObj?.title} Quality:${quality}`
+            )
 
             index++
           } catch (error) {
             logger.error(
-              `${error.toString()} Course::${course?.title}  Vid::${
-                vidObj?.title
-              }`
+              `${error.toString()} Course:: ${
+                course?.title
+              }  Vid:: ${cIdx}.${vId} ${vidObj?.title}`
             )
-            console.log(error, ` Vid::${vidObj?.title}`)
+            console.log(error, ` Vid:: ${cIdx}.${vId} ${vidObj?.title}`)
           }
+
+          vId++
         }
+
+        cIdx++
       }
     }
 
