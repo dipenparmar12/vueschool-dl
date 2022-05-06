@@ -34,7 +34,7 @@ module.exports.downloadCourses = async function () {
           // // downloads/course-title/chapter/video-title-[quality].mp3
 
           try {
-            console.log(`Downloading......${vId} ${vidObj?.title}`)
+            console.log(`Downloading......${cIdx}.${vId} ${vidObj?.title}`)
             const downloadPath = `${rootPath}/downloads/${course?.title}/${cIdx}-${chapter?.title}`
             const fileName = str.sensitize(vidObj?.title)
 

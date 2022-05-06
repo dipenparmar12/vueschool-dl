@@ -9,7 +9,7 @@ const run = async () => {
   // await vueSchool.scrapeCourseJson(browserInstance)
   await vueSchool.login(browserInstance)
   await vueSchool.scrapeCourseMetaData(browserInstance, courses)
-  await downloadCourses()
+  // await downloadCourses()
   process.exit()
 }
 

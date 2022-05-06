@@ -3,6 +3,7 @@ const rootPath = require('app-root-path')
 const { interception, screenshot } = require('../browserObj')
 const logger = require('../utils/logger')
 const { sensitize } = require('../utils/str')
+const { downloadVideo } = require('./downloadVideo')
 
 module.exports.login = async (browserInstance) => {
   const email = process.env.EMAIL
@@ -111,6 +112,8 @@ module.exports.courseScraper = async function courseScraper(
   courseURL,
   browser
 ) {
+  const quality = process.env.VIDEO_QUALITY || '360p'
+
   // await page.goto(courseURL, { waitUntil: 'networkidle0' })
   logger.info(`Navigating to ${courseURL}...`)
   await page.goto(courseURL)
@@ -140,19 +143,32 @@ module.exports.courseScraper = async function courseScraper(
     chapters: [],
   }
 
-  for (const [idx, _chapter] of chapters?.entries()) {
+  for (const [chapterIdx, _chapter] of chapters?.entries()) {
     const chapter = {
       title: _chapter?.title,
       videos: [],
     }
 
-    for (const video of _chapter?.videos) {
+    for (const [videoIdx, video] of _chapter?.videos?.entries()) {
       try {
         console.log(
           'Found video::',
-          `Course-> ${courseTitle}, Vid:${video?.title}`
+          `Course-> ${courseTitle}, Vid: ${video?.title}`
         )
+
         const variants = await this.videoVariantsScrap(page, video?.src)
+
+        // // Download video on by one
+        await downloadVideo({
+          videoUrl: variants?.find((item) => item?.quality === quality)?.url,
+          courseTitle: courseTitle,
+          chapterTitle: _chapter?.title,
+          videoTitle: video?.title,
+          chapterIdx,
+          videoIdx,
+          quality,
+        })
+
         chapter.videos.push({
           title: video?.title,
           src: video?.src,
@@ -177,7 +193,7 @@ module.exports.courseScraper = async function courseScraper(
   return courseJson
 }
 
-module.exports.videoVariantsScrap = async (page, _url) => {
+module.exports.videoVariantsScrap = async (page, _url, info) => {
   await page.goto(_url, { waitUntil: ['networkidle0', 'domcontentloaded'] }) // wait until page load
   // await page.waitForSelector("iframe", { timeout: 5000 });
   // await delay(200)
